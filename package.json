@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "markdown-it-container": "^3.0.0",
+    "vue-run-sfc": "^1.6.0",
     "vuepress": "1.2.0",
     "vuepress-theme-reco": "1.5.7"
   },

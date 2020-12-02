@@ -2,6 +2,7 @@ import LuckyGrid from './LuckyGrid.vue'
 import LuckyWheel from './LuckyWheel.vue'
 
 const install = (Vue, options) => {
+  console.log(Vue);
   Vue.component('LuckyGrid', LuckyGrid)
   Vue.component('LuckyWheel', LuckyWheel)
 }

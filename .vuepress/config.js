@@ -6,11 +6,7 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: 'http://changba.com/favicon.ico'}],
     ['link', { rel: 'stylesheet', href: './styles/index.styl'}],
-    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }],
-    ['script', { src: 'https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js' }],
-    ['script', { src: 'https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js' }],
-    ['script', { src: 'https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
-    ['script', { src: 'https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
+    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
   ],
   theme: 'reco',
   themeConfig: {
