@@ -1,4 +1,5 @@
 const plugins = require('./config/plugins.js')
+const sidebar = require('./config/sidebar')
 module.exports = {
   title: "唱吧 FE DEMO",
   description: '唱吧前端业务DEMO系统',
@@ -23,18 +24,11 @@ module.exports = {
       { text: 'GitLab', 
         icon: 'reco-message',
         items: [
-          { text: 'GitLab', link: 'https://github.com/recoluan', icon: 'reco-github' }
+          { text: 'GitLab', link: '', icon: 'reco-github' }
         ]
       }
     ],
-    sidebar: {
-      '/docs/': [
-        '',
-        'theme',
-        'plugin',
-        'api'
-      ]
-    },  
+    sidebar,  
     type: 'blog',
     // 博客设置
     blogConfig: {
@@ -53,6 +47,12 @@ module.exports = {
         desc: '唱吧官网',
         logo: "/logo.png",
         link: 'https://changba.com/'
+      },
+      {
+        title: '猫爪',
+        desc: '猫爪官网',
+        logo: "https://maozhua.xiaochang.com/logo.png",
+        link: 'https://maozhua.xiaochang.com'
       },
       {
         title: '猫爪WEEX文档',

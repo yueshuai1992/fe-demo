@@ -42,7 +42,6 @@ module.exports = function (options, context) {
             htmlStr += content
           } 
           return `<vuepress-run v-bind='${JSON.stringify(attrs)}' code="${encodeURIComponent(htmlStr)}">`
-          // return "<div>66666</div>"
         },
       })
     },
