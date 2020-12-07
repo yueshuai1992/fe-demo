@@ -1,4 +1,6 @@
 import VueRunSfc from "./vue-run-sfc";
+import toasted from 'vue-toasted';
+console.log(toasted);
 
 const install = function(Vue, options = {}) {
   Vue.component("vue-run-sfc", VueRunSfc);

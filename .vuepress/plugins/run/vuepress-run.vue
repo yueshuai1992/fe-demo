@@ -12,7 +12,7 @@ export default {
     }
   },
   mounted () {
-    import('../cb-vue-online/src/vue-run-sfc').then(module => {
+    import('../cb-vue-online/src/index.vue').then(module => {
       this.dynamicComponent = module.default
     })
   },

@@ -80,7 +80,7 @@ const screenfull = require("screenfull");
 const Babel = require("@babel/standalone");
 
 export default {
-  name: "vue-run-sfc",
+  name: "cb-vue-online",
   components: {
     VueRunSfcHeader,
     VueRunSfcPreview,
