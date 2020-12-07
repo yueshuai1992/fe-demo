@@ -4,6 +4,7 @@ export default function(code, { imports }) {
 
     visitor: {
       ImportDeclaration(path) {
+        console.log(path);
         imports.push({
           variables: path.node.specifiers.map(spec => ({
             local: spec.local.name,

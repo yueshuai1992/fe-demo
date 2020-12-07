@@ -73,6 +73,8 @@ import Header from "./components/header";
 import Control from "./components/control";
 import CbMain from "./components/main";
 import cssVars from "css-vars-ponyfill";
+import getImports from './utils/get-imports';
+import getPkgs from './utils/get-pkgs';
 
 const { debounce } = require("throttle-debounce");
 const compiler = require("vue-template-compiler");
@@ -335,6 +337,33 @@ export default {
             template = template ? JSON.stringify(template.content) : '""';
 
             // 处理 js
+            const imports = [];
+            let compiled;
+            const pkgs = [];
+            let scriptContent = 'exports = { default: {} }';
+            if (script) {
+              try {
+                compiled = Babel.transform(script.content, {
+                  presets: ['es2015'],
+                  plugins: [
+                    [getImports, { imports }]
+                  ]
+                }).code;
+              } catch (e) {
+                this.preview = {
+                  errors: [e.message]
+                };
+                return;
+              }
+              scriptContent = await getPkgs(compiled, imports, pkgs);
+              this.preview = {
+                  styles,
+                  script: scriptContent,
+                  template,
+                  errors
+              };
+            }
+            /* let compiled;
             script =
               script && script.content.trim()
                 ? script.content.trim()
@@ -356,7 +385,7 @@ export default {
               this.preview = {
                 errors: [error.stack]
               };
-            }
+            } */
           }
         });
       }
