@@ -1,13 +1,13 @@
 <template>
   <div
     ref="wrapper"
-    class="vue-run-sfc"
+    class="cb-vue-online"
     :style="{ 'overflow-y': isScreenfull ? 'auto' : null }"
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
   >
     <!-- header部分 -->
-    <vue-run-sfc-header
+    <header
       :title="title"
       :is-row="isRow"
       v-if="!attrs.isHideHeader"
@@ -18,7 +18,7 @@
       @screenfull="handleScreenfull"
     />
     <!-- 中间主体区 -->
-    <vue-run-sfc-main
+    <cb-main
       :is-row="isRow"
       :is-expanded="isExpanded"
       :reverse="attrs.reverse"
@@ -27,7 +27,7 @@
       <template v-slot:editor>
         <!-- 编辑器区域 -->
         <codemirror
-          class="vue-run-sfc-editor"
+          class="cb-vue-online-editor"
           v-model="editCode"
           @input="handleRun"
           :style="{ height: editorHeight }"
@@ -36,7 +36,7 @@
       </template>
       <template v-slot:preview>
         <!-- 运行结果展示 -->
-        <vue-run-sfc-preview
+        <preview
           ref="preview"
           :js-labs="attrs.jsLabs"
           :theme-color="attrs.themeColor"
@@ -53,10 +53,10 @@
           :value="preview"
         />
       </template>
-    </vue-run-sfc-main>
+    </cb-main>
 
     <!-- 控制是否展开代码 -->
-    <vue-run-sfc-control
+    <control
       :is-screenfull="isScreenfull"
       :is-expanded="isExpanded"
       :hovering="hovering"
@@ -68,10 +68,10 @@
 
 <script>
 import { codemirror, codemirrorOption } from "./codemirror";
-import VueRunSfcPreview from "./components/vue-run-sfc-preview";
-import VueRunSfcHeader from "./components/vue-run-sfc-header";
-import VueRunSfcControl from "./components/vue-run-sfc-control";
-import VueRunSfcMain from "./components/vue-run-sfc-main";
+import Preview from "./components/preview";
+import Header from "./components/header";
+import Control from "./components/control";
+import CbMain from "./components/main";
 import cssVars from "css-vars-ponyfill";
 
 const { debounce } = require("throttle-debounce");
@@ -82,10 +82,10 @@ const Babel = require("@babel/standalone");
 export default {
   name: "cb-vue-online",
   components: {
-    VueRunSfcHeader,
-    VueRunSfcPreview,
-    VueRunSfcControl,
-    VueRunSfcMain,
+    Header,
+    Preview,
+    Control,
+    CbMain,
     codemirror
   },
   props: {
@@ -416,32 +416,32 @@ export default {
 
 <style>
 /* 主体样式 */
-.vue-run-sfc {
+.cb-vue-online {
   box-sizing: border-box;
   background: white;
   color: #303133;
 }
-.vue-run-sfc:hover {
+.cb-vue-online:hover {
   box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
     0 2px 4px 0 rgba(232, 237, 250, 0.5);
 }
 
 /* 编辑器样式 */
-.vue-run-sfc-editor {
+.cb-vue-online-editor {
   width: 100%;
   font-size: 14px;
   line-height: 1.5em;
 }
-.vue-run-sfc-editor .CodeMirror {
+.cb-vue-online-editor .CodeMirror {
   height: inherit;
 }
-.vue-run-sfc-editor .CodeMirror-vscrollbar {
+.cb-vue-online-editor .CodeMirror-vscrollbar {
   display: none !important;
 }
-.vue-run-sfc-editor .CodeMirror-scrollbar-filler {
+.cb-vue-online-editor .CodeMirror-scrollbar-filler {
   display: none !important;
 }
-.vue-run-sfc-editor .CodeMirror-sizer {
+.cb-vue-online-editor .CodeMirror-sizer {
   padding-right: 0 !important;
 }
 </style>
