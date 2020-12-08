@@ -1,6 +1,7 @@
 import parsePackageName from 'parse-package-name';
 const unpkg = 'https://unpkg.com/'
 export default async function(code, imports, scripts) {
+  console.log(imports);
   const replacements = [];
   for (const [index, item] of imports.entries()) {
     if(item.module.includes('.json')) {
@@ -9,7 +10,7 @@ export default async function(code, imports, scripts) {
       xhr.open('GET', url, false);
       xhr.overrideMimeType("text/html;charset=utf-8");//默认为utf-8
       xhr.send(null);
-      const data = `var RedPcket = ${xhr.responseText} \n`
+      const data = `var ${item.variables[0].local} = ${xhr.responseText} \n`
       replacements.push(data);
     } else {
       const moduleName = `__npm_module_${index}`;
