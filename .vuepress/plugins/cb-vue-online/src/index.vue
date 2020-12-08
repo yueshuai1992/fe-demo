@@ -7,7 +7,7 @@
     @mouseleave="hovering = false"
   >
     <!-- header部分 -->
-    <header
+    <cb-header
       :title="title"
       :is-row="isRow"
       v-if="!attrs.isHideHeader"
@@ -70,7 +70,7 @@
 <script>
 import { codemirror, codemirrorOption } from "./codemirror";
 import Preview from "./components/preview";
-import Header from "./components/header";
+import CbHeader from "./components/header";
 import Control from "./components/control";
 import CbMain from "./components/main";
 import cssVars from "css-vars-ponyfill";
@@ -85,7 +85,7 @@ const Babel = require("@babel/standalone");
 export default {
   name: "cb-vue-online",
   components: {
-    Header,
+    CbHeader,
     Preview,
     Control,
     CbMain,
@@ -362,7 +362,7 @@ export default {
               scriptContent = await getPkgs(compiled, imports, pkgs);
               pkgs.forEach(pkg => {
                 this.attrs.jsLabs.push(
-                  `https://unpkg.com/${pkg.module}`
+                  `https://cdn.jsdelivr.net/npm/${pkg.module}`
                 );
               });
 

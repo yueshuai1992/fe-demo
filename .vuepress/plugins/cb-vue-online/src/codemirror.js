@@ -2,6 +2,7 @@ import "codemirror/lib/codemirror.css";
 
 // language
 import "codemirror/mode/vue/vue.js";
+import 'codemirror/theme/lucario.css';
 
 // styleSelectedText
 import "codemirror/addon/selection/mark-selection.js";
@@ -39,6 +40,7 @@ export { codemirror } from "vue-codemirror";
 
 export const codemirrorOption = {
   tabSize: 2,
+  theme: 'lucario',
   mode: "text/x-vue",
   styleActiveLine: true,
   lineNumbers: true,
@@ -56,5 +58,5 @@ export const codemirrorOption = {
   keyMap: "sublime",
   matchBrackets: true,
   showCursorWhenSelecting: true,
-  extraKeys: { Ctrl: "autocomplete" }
+  extraKeys: {  Tab: 'emmetExpandAbbreviation', }
 };
