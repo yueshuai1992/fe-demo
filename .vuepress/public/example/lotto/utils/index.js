@@ -10,16 +10,21 @@ export const isExpectType = (param, ...types) => {
 
 // 参数校验器
 export const paramsValidator = (data, params = {}, msg = '') => {
-  if (isExpectType(data, 'object')) data = [data]
+  if (isExpectType(data, 'object')) {
+    data = [data]
+  }
   return data.every((item, index) => {
-    for (let key in params) {
-      if (params[key] === 1 && !item.hasOwnProperty(key)) {
+    for (const key in params) {
+      Object.prototype.hasOwnProperty.call(item, key)
+      if (params[key] === 1 && !Object.prototype.hasOwnProperty.call(item, key)) {
         return !!console.error(`参数 ${msg}[${index}] 缺少 ${key} 属性`)
       }
       else if (isExpectType(params[key], 'object') && item[key]) {
         if (!paramsValidator(
           item[key], params[key], msg ? `${msg}[${index}].${key}` : key
-        )) return false
+        )) {
+          return false
+        }
       }
     }
     return true

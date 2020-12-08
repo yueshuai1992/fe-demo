@@ -10,7 +10,7 @@ export default {
     // 奖品 (该属性被watch监听)
     prizes: {
       type: Array,
-      validator (data) {
+      validator(data) {
         return paramsValidator({ prizes: data }, {
           prizes: { x: 1, y: 1, imgs: { src: 1 }, fonts: { text: 1 } }
         })
@@ -20,16 +20,16 @@ export default {
     // 按钮 (该属性被watch监听)
     button: {
       type: Object,
-      validator (data) {
+      validator(data) {
         return paramsValidator({ button: [data] }, {
           button: { x: 1, y: 1, imgs: { src: 1 }, fonts: { text: 1 } }
         })
-      },
+      }
     },
     // 边框 (该属性被watch监听)
     blocks: {
       type: Array,
-      validator (data) {
+      validator(data) {
         return paramsValidator({ blocks: data }, {
           blocks: { padding: 1, background: 1 }
         })
@@ -39,14 +39,14 @@ export default {
     // 格子的默认样式 (该属性会在computed里面进行修正)
     defaultStyle: {
       type: Object,
-      default () { // 默认配置在computed里面: _defaultStyle
+      default() { // 默认配置在computed里面: _defaultStyle
         return {}
       }
     },
     // 中奖标记样式 (该属性会在computed里面进行修正)
     activeStyle: {
       type: Object,
-      default () { // 默认配置在computed里面: _activeStyle
+      default() { // 默认配置在computed里面: _activeStyle
         return {}
       }
     },
@@ -62,28 +62,30 @@ export default {
     // 纵向等分成 rows 个格子
     rows: { type: [String, Number], default: 3 },
     // demo演示开启中奖标识自动游走
-    demo: { type: Boolean, default: false },
+    demo: { type: Boolean, default: false }
   },
-  data () {
+  data() {
     return {
-      lucky: null,
+      lucky: {
+        prizes: []
+      }
     }
   },
   watch: {
     prizes: {
-      handler (newData, oldData) {
+      handler(newData) {
         this.lucky.prizes = newData
       },
-      deep: true,
+      deep: true
     },
     button: {
-      handler (newData, oldData) {
+      handler(newData) {
         this.lucky.button = newData
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
-  mounted () {
+  mounted() {
     this.lucky = new LuckyGrid(this.$refs.lottoGrid, {
       ...this.$props,
       start: (...rest) => {
@@ -91,16 +93,16 @@ export default {
       },
       end: (...rest) => {
         this.$emit('end', ...rest)
-      },
+      }
     })
   },
   methods: {
-    play (...rest) {
+    play(...rest) {
       this.lucky.play(...rest)
     },
-    stop (...rest) {
+    stop(...rest) {
       this.lucky.stop(...rest)
-    },
+    }
   }
 }
 </script>

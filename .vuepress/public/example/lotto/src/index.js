@@ -1,10 +1,10 @@
-import LuckyGrid from './LuckyGrid.vue'
-import LuckyWheel from './LuckyWheel.vue'
+import LottoGrid from './LottoGrid.vue'
+import LottoWheel from './LottoWheel.vue'
 
-const install = (Vue, options) => {
+const install = (Vue) => {
   console.log(Vue);
-  Vue.component('LuckyGrid', LuckyGrid)
-  Vue.component('LuckyWheel', LuckyWheel)
+  Vue.component('LuckyGrid', LottoGrid)
+  Vue.component('LuckyWheel', LottoWheel)
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -12,4 +12,4 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default { install }
-export { LuckyGrid, LuckyWheel }
+export { LottoGrid, LottoWheel }
