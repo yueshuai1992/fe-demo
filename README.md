@@ -8,3 +8,4 @@ bgImageStyle: {
 }
 isShowTitleInHome: true
 actionText: Guide
+---
