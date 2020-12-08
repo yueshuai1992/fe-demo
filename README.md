@@ -3,6 +3,7 @@ home: true
 heroText: 唱吧 FE DEMO
 tagline: 唱吧前端业务DEMO系统
 heroImage: /web.svg
+```
 # heroImageStyle: {
 #   maxWidth: '600px',
 #   width: '100%',
@@ -11,6 +12,7 @@ heroImage: /web.svg
 #   background: '#fff',
 #   borderRadius: '1rem',
 # }
+```
 bgImageStyle: {
   height: '450px'
 }
