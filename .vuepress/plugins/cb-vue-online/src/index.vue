@@ -37,6 +37,7 @@
       <template v-slot:preview>
         <!-- 运行结果展示 -->
         <preview
+          v-if="previewShow"
           ref="preview"
           :js-labs="attrs.jsLabs"
           :theme-color="attrs.themeColor"
@@ -205,7 +206,10 @@ export default {
       // 预览区高度
       previewHeight: 0,
       // 布局
-      isRow: null
+      isRow: null,
+
+      // 展示
+      previewShow: false
     };
   },
   computed: {
@@ -356,6 +360,14 @@ export default {
                 return;
               }
               scriptContent = await getPkgs(compiled, imports, pkgs);
+              pkgs.forEach(pkg => {
+                this.attrs.jsLabs.push(
+                  `https://unpkg.com/${pkg.module}`
+                );
+              });
+
+              this.previewShow = true
+
               this.preview = {
                   styles,
                   script: scriptContent,
@@ -363,29 +375,6 @@ export default {
                   errors
               };
             }
-            /* let compiled;
-            script =
-              script && script.content.trim()
-                ? script.content.trim()
-                : "export default {}";
-
-            // 转码
-            try {
-              script = Babel.transform(script, {
-                presets: ["es2015"]
-              }).code;
-
-              this.preview = {
-                styles: styles,
-                script: script,
-                template: template,
-                errors: errors
-              };
-            } catch (error) {
-              this.preview = {
-                errors: [error.stack]
-              };
-            } */
           }
         });
       }

@@ -1,4 +1,5 @@
 import parsePackageName from 'parse-package-name';
+const unpkg = 'https://unpkg.com/'
 export default async function(code, imports, scripts) {
   const replacements = [];
   for (const [index, item] of imports.entries()) {
@@ -14,6 +15,7 @@ export default async function(code, imports, scripts) {
       const moduleName = `__npm_module_${index}`;
       const pkg = parsePackageName(item.module);
       const version = pkg.version || 'latest';
+
       scripts.push({
         path: pkg.path ? `/${pkg.path}` : '',
         name: moduleName,
@@ -22,8 +24,10 @@ export default async function(code, imports, scripts) {
             ? `vue@${version}/dist/vue.esm.js`
             : `${pkg.name}@${version}`
       });
+
       let replacement = '\n';
-      for (const variable of item.variables) {
+      
+      /* for (const variable of item.variables) {
         if (variable.imported === 'default') {
           replacement += `var ${
             variable.local
@@ -33,7 +37,7 @@ export default async function(code, imports, scripts) {
             variable.imported
           };\n`;
         }
-      }
+      } */
       if (replacement) {
         replacements.push(replacement);
       }
